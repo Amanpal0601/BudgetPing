@@ -2,28 +2,111 @@ import { Button, Html, Head, Body, Preview, Container, Heading, Text, Section } 
 import * as React from "react";
 
 export default function EmailTemplate({
-  userName="",
-  type="budget-alert",
-  data={},
-}) 
- 
-{
-  
-
-  if(type === "budget-alert"){
+  userName = "Aman",
+  type = "monthly-report",
+  data = {
+    month: "December",
+    stats: {
+      totalIncome: 5000,
+      totalExpenses: 3500,
+      byCategory: {
+        housing: 1500,
+        groceries: 600,
+        transportation: 400,
+        entertainment: 300,
+        utilities: 700,
+      },
+    },
+    insights: [
+      "Your housing expenses are 43% of your total spending - consider reviewing your housing costs.",
+      "Great job keeping entertainment expenses under control this month!",
+      "Setting up automatic savings could help you save 20% more of your income.",
+    ],
+  },
+}) {
+  if (type === "monthly-report") {
     return (
-    <Html>
-      <Head/>
-      <Preview>Budget Alert</Preview>
-      <Body style={styles.body}>
-        <Container style={styles.container} >
-          <Heading style={styles.title}>Budget Alert</Heading>
-          <Text style={styles.text}>Hello {userName}</Text>
-          <Text style={styles.text}>
-            You&rsquo;ve used {(data?.percentageUsed ?? 0).toFixed(1)}% of your monthly budget.
-          </Text>
-          <Section style={styles.statsContainer}>
-            <div style={styles.stat}>
+      <Html>
+        <Head />
+        <Preview>Your Monthly Financial Report</Preview>
+        <Body style={styles.body}>
+          <Container style={styles.container}>
+            <Heading style={styles.title}>Monthly Financial Report</Heading>
+
+            <Text style={styles.text}>Hello {userName},</Text>
+            <Text style={styles.text}>
+              Here&rsquo;s your financial summary for {data?.month}:
+            </Text>
+
+            {/* Main Stats */}
+            <Section style={styles.statsContainer}>
+              <div style={styles.stat}>
+                <Text style={styles.text}>Total Income</Text>
+                <Text style={styles.heading}>${data?.stats?.totalIncome}</Text>
+              </div>
+              <div style={styles.stat}>
+                <Text style={styles.text}>Total Expenses</Text>
+                <Text style={styles.heading}>${data?.stats?.totalExpenses}</Text>
+              </div>
+              <div style={styles.stat}>
+                <Text style={styles.text}>Net</Text>
+                <Text style={styles.heading}>
+                  ${(data?.stats?.totalIncome || 0) - (data?.stats?.totalExpenses || 0)}
+                </Text>
+              </div>
+            </Section>
+
+            {/* Category Breakdown */}
+            {data?.stats?.byCategory && (
+              <Section style={styles.section}>
+                <Heading style={styles.heading}>Expenses by Category</Heading>
+                {Object.entries(data?.stats?.byCategory).map(
+                  ([category, amount]) => (
+                    <div key={category} style={styles.row}>
+                      <Text style={styles.text}>{category}</Text>
+                      <Text style={styles.text}>${amount}</Text>
+                    </div>
+                  )
+                )}
+              </Section>
+            )}
+
+            {/* AI Insights */}
+            {data?.insights && (
+              <Section style={styles.section}>
+                <Heading style={styles.heading}>BudgetPing Insights</Heading>
+                {data.insights.map((insight, index) => (
+                  <Text key={index} style={styles.text}>
+                    • {insight}
+                  </Text>
+                ))}
+              </Section>
+            )}
+
+            <Text style={styles.footer}>
+              Thank you for using BudgetPing. Keep tracking your finances for better
+              financial health!
+            </Text>
+          </Container>
+        </Body>
+      </Html>
+    );
+  }
+
+  if (type === "budget-alert") {
+    return (
+      <Html>
+        <Head />
+        <Preview>Budget Alert</Preview>
+        <Body style={styles.body}>
+          <Container style={styles.container}>
+            <Heading style={styles.title}>Budget Alert</Heading>
+            <Text style={styles.text}>Hello {userName}</Text>
+            <Text style={styles.text}>
+              You&rsquo;ve used {(data?.percentageUsed ?? 0).toFixed(1)}% of your monthly budget.
+            </Text>
+            <Section style={styles.statsContainer}>
+              <div style={styles.stat}>
                 <Text style={styles.text}>Budget Amount</Text>
                 <Text style={styles.heading}>₹{data?.budgetAmount}</Text>
               </div>
@@ -34,18 +117,15 @@ export default function EmailTemplate({
               <div style={styles.stat}>
                 <Text style={styles.text}>Remaining</Text>
                 <Text style={styles.heading}>
-                  ₹{data?.budgetAmount - data?.totalExpenses}
+                  ₹{(data?.budgetAmount || 0) - (data?.totalExpenses || 0)}
                 </Text>
-            </div>
-          </Section>
-        </Container>
-      </Body>
-    </Html>
-  );
-
-    
-}
-  
+              </div>
+            </Section>
+          </Container>
+        </Body>
+      </Html>
+    );
+  }
 }
 
 const styles = {

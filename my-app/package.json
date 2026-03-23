@@ -48,6 +48,7 @@
     "zod": "^4.3.4"
   },
   "devDependencies": {
+    "@react-email/preview-server": "^5.2.5",
     "@tailwindcss/postcss": "^4",
     "@types/react": "19.2.9",
     "eslint": "^9",
