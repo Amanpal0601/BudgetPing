@@ -44,7 +44,7 @@ function HeroSection() {
             </Button>
             </Link>
 
-            <Link href= "https://youtu.be/egS6fnZAdzk?si=8vR-TB5MQ679tn1j">
+            <Link href= "https://youtu.be/A9Xq3FGjpZA?si=RsxDltUwvhFrOdLf">
             <Button size="lg" variant="outline" className="px-8">
                 Watch demo
             </Button>
