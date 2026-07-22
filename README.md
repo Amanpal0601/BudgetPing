@@ -1,8 +1,8 @@
-# 🏦 BudgetPing - AI-Powered Financial Tracker
+#  BudgetPing - AI-Powered Financial Tracker
 
 BudgetPing is a modern, full-stack budgeting application designed to help users track their expenses, manage accounts, and gain financial insights with the power of AI.
 
-## 🚀 Features
+##  Features
 
 - **AI Receipt Scanning**: Automatically extract transaction details from receipt images using Google Gemini AI.
 - **Multi-Account Management**: Create and manage multiple bank accounts with real-time balance tracking.
@@ -13,7 +13,7 @@ BudgetPing is a modern, full-stack budgeting application designed to help users 
 - **Enterprise-Grade Protection**: Rate limiting and bot protection using Arcjet.
 - **Automated Notifications**: Receive email alerts for budget limits and transaction summaries.
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 ### Frontend & Core
 - **Framework**: [Next.js](https://nextjs.org/) (App Router)
@@ -33,7 +33,7 @@ BudgetPing is a modern, full-stack budgeting application designed to help users 
 ### AI Integration
 - **AI Model**: [Google Gemini AI](https://deepmind.google/technologies/gemini/)
 
-## 🏁 Getting Started
+##  Getting Started
 
 ### Prerequisites
 - Node.js installed
